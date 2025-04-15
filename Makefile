@@ -18,7 +18,7 @@ endif
 ifeq ($(X64),yes)
 BITS = 64
 XOBJS = kobj/vm64.o
-XFLAGS = -m64 -DX64 -mtls-direct-seg-refs -mno-red-zone
+XFLAGS = -m64 -DX64 -mtls-direct-seg-refs -mno-red-zone -mcmodel=kernel
 LDFLAGS = -m elf_x86_64 
 QEMU ?= qemu-system-x86_64
 else
