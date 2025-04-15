@@ -1,17 +1,21 @@
 -include local.mk
 
-
 # detect build platform
 UNAME := $(shell uname)
 ifeq ($(UNAME),Darwin)
-TOOLPREFIX = i686-elf-
+ifeq ($(X64),yes)
+# osx 64
+TOOLPREFIX = x86_64-elf-
 else
+TOOLPREFIX = i686-elf-
+# osx 32
+endif
+else
+# linux
 TOOLPREFIX =
 endif
-
-X64 ?= no
-
-ifeq ("$(X64)","yes")
+	
+ifeq ($(X64),yes)
 BITS = 64
 XOBJS = kobj/vm64.o
 XFLAGS = -m64 -DX64 -mtls-direct-seg-refs -mno-red-zone
@@ -88,6 +92,7 @@ xv6memfs.img: out/bootblock out/kernelmemfs.elf
 kobj/%.o: kernel/%.c
 	@mkdir -p kobj
 	$(CC) $(CFLAGS) -c -o $@ $<
+	echo "dd"$(X64)"ee"
 
 kobj/%.o: kernel/%.S
 	@mkdir -p kobj

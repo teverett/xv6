@@ -30,6 +30,31 @@ jobs:
         name: osx_32bit_fs.img
         path: fs.img
 
+  build-macos64:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: install packages
+      run: brew install nasm x86-elf-gcc
+
+    - name: build
+      run: make X64=yes
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: osx_64bit_xv6.img
+        path: xv6.img
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: osx_64bit_fs.img
+        path: fs.img
+
+
   build-ubuntu32:
     runs-on: ubuntu-latest
     strategy:
