@@ -34,3 +34,17 @@ jobs:
     - name: build
       run: make
 
+    - name: upload xv6.img
+    - uses: actions/upload-artifact@v4
+      with:
+        name: linux_32bit/xv6.img
+        path: xv6.img
+
+    - name: upload fs.img
+    - uses: actions/upload-artifact@v4
+      with:
+        name: linux_32bit/fs.img
+        path: fs.img
+
+
+

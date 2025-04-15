@@ -4,7 +4,7 @@
 # detect build platform
 UNAME := $(shell uname)
 ifeq ($(UNAME),Darwin)
-TOOLPREFIX = x86_64-elf-
+TOOLPREFIX = i686-elf-
 else
 TOOLPREFIX =
 endif
