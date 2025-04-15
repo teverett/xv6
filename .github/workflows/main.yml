@@ -20,6 +20,16 @@ jobs:
     - name: build
       run: make
 
+    - uses: actions/upload-artifact@v4
+      with:
+        name: osx_32bit_xv6.img
+        path: xv6.img
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: osx_32bit_fs.img
+        path: fs.img
+
   build-ubuntu32:
     runs-on: ubuntu-latest
     strategy:
@@ -36,12 +46,12 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: linux_32bit/xv6.img
+        name: linux_32bit_xv6.img
         path: xv6.img
 
     - uses: actions/upload-artifact@v4
       with:
-        name: linux_32bit/fs.img
+        name: linux_32bit_fs.img
         path: fs.img
 
 
