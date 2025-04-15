@@ -79,5 +79,28 @@ jobs:
         name: linux_32bit_fs.img
         path: fs.img
 
+  build-ubuntu64:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: install packages
+      run: sudo apt install nasm
+
+    - name: build
+      run: make X64=yes
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: linux_64bit_xv6.img
+        path: xv6.img
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: linux_64bit_fs.img
+        path: fs.img
 
 
